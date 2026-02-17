@@ -40,6 +40,14 @@ public class PetFeederTest {
     }
 
     /**
+     *This test confirms the seeded bug in wet food: positive input throws exception
+     */
+    @Test
+    public void testSeededWetFoodBug() {
+        assertThrows(FoodStockException.class, () -> pf.replenishFood("1","1","1","1"));
+    }
+
+    /**
      * Test replenishing food with valid inputs.
      * Verifies that stock increases correctly.
      * Wet food = "0" avoids the seeded bug
@@ -82,7 +90,7 @@ public class PetFeederTest {
      * Test replenishing food with zeros (no change to stock).
      */
     @Test
-    public void testReplenishFood_Zero() throws FoodStockException {
+    public void testReplenishFood_Boundary_Zero() throws FoodStockException {
 
         pf.replenishFood("0", "0", "0", "0");
 
@@ -95,20 +103,9 @@ public class PetFeederTest {
         assertEquals(expected, pf.checkFoodStock());
     }
 
-    /**
-     *This test confirms the seeded bug in wet food: positive input throws exception
-     */
-    @Test
-    public void testSeededWetFoodBug() {
-        assertThrows(FoodStockException.class, () -> pf.replenishFood("1","1","1","1"));
-    }
 
-    /**
-     * Test replenishing food with minimal positive input (boundary case).
-     * This highlights the seeded wet food bug.
-     */
     @Test
-    public void testReplenishFood_Boundary() throws FoodStockException {
+    public void testReplenishFood_Boundary_One() throws FoodStockException {
 
         pf.replenishFood("1", "1", "0", "1");
 
@@ -126,7 +123,7 @@ public class PetFeederTest {
      * Verifies that stock increases correctly after each replenishment.
      */
     @Test
-    public void testReplenishFood_CumulativeLoop() throws FoodStockException {
+    public void testReplenishFood_Cumulative() throws FoodStockException {
 
         String[][] replenishments = {
                 //wetFood = 0 in order to correctly test other food items
