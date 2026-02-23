@@ -27,7 +27,7 @@ The system provides the following core features via its API and Console Interfac
 - `PetFeeder`: Main controller that coordinates meal plan management, food stock, and dispensing logic.
 - `MealPlan`: Domain model for a single meal configuration, including ingredient quantities and a derived energy cost.
 - `MealPlanBook`: Fixed-size collection of `MealPlan` objects; supports listing, adding, editing, and deleting plans.
-- `FoodContainer`: Stores the current stock of each ingredient (kibble, water, wet food, treats) and checks/updates inventory when meals are dispensed.
+- `foodcontainer`: Stores the current stock of each ingredient (kibble, water, wet food, treats) and checks/updates inventory when meals are dispensed.
 - `FeedingScheduler`: Uses a background scheduler to trigger automatic, periodic calls to `dispenseMeal` for a chosen meal plan.
 - `petfeeder.exceptions.*`: Custom exception types used to signal invalid user input or stock/meal configuration errors.
 
@@ -35,7 +35,7 @@ The system provides the following core features via its API and Console Interfac
 
 1. **Start the program**: Run the `Main` class; the console menu will appear.
 2. **Configure meals**: Use options 1–3 to add, delete, or edit `MealPlan`s with ingredient amounts and energy cost.
-3. **Replenish stock**: Use option 4 to add ingredient units into the `FoodContainer`.
+3. **Replenish stock**: Use option 4 to add ingredient units into the `foodcontainer`.
 4. **Inspect stock**: Use option 5 to print the current quantities of each ingredient.
 5. **Dispense a meal**: Use option 6, choose a configured meal; the system will either:
    - Dispense the meal (printing its name), or
