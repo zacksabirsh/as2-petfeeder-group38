@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: petfeeder.ExampleTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec <<< FAILURE!
+petfeeder.ExampleTest.testReplenishFood_Normal()  Time elapsed: 0.003 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "petfeeder.PetFeeder.replenishFood(String, String, String, String)" because "this.pf" is null
+	at petfeeder.ExampleTest.testReplenishFood_Normal(ExampleTest.java:45)
+
+petfeeder.ExampleTest.testReplenishFoodException()  Time elapsed: 0.003 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <petfeeder.exceptions.FoodStockException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3111)
+	at petfeeder.ExampleTest.testReplenishFoodException(ExampleTest.java:61)
+Caused by: java.lang.NullPointerException: Cannot invoke "petfeeder.PetFeeder.replenishFood(String, String, String, String)" because "this.pf" is null
+	at petfeeder.ExampleTest.lambda$testReplenishFoodException$0(ExampleTest.java:63)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 17 more
+
+petfeeder.ExampleTest.testScheduledFeeding_ChangesStock()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "petfeeder.PetFeeder.addMealPlan(petfeeder.MealPlan)" because "this.pf" is null
+	at petfeeder.ExampleTest.testScheduledFeeding_ChangesStock(ExampleTest.java:83)
+
