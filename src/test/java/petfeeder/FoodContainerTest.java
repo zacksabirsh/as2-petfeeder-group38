@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import petfeeder.exceptions.FoodStockException;
+import petfeeder.exceptions.MealPlanException;
 
 public class FoodContainerTest {
     private FoodContainer fc;
@@ -15,28 +17,120 @@ public class FoodContainerTest {
         fc = new FoodContainer();
     }
 
-
-
-    /* Test for useIngredients Success*/
+    /* Valid Number of TREATS */
     @Test
-    public void useIngredientsSuccessTest(){
-        MealPlan m = new MealPlan();
-        assertTrue(fc.useIngredients(m));
+    public void addTreats_whenValidAmount_updatesCorrectly() throws Exception{
+        String newAmount = "10";
+        fc.addTreats(newAmount);
+        assertEquals(25, fc.getTreats());
     }
-    
 
-    /* Test for useIngredients Failure*/
+    /* Testing for Null Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
     @Test
-    public void useIngredientsFailTest(){
-        MealPlan m = new MealPlan();
-        assertFalse(fc.useIngredients(m));
+    public void addTreats_whenInvalidAmount_throwsFoodStockException () {
+        String NullAmount = null;
+        assertThrows(FoodStockException.class, ()->{
+            fc.addTreats(NullAmount);
+        });
+
     }
-    
 
-    /* Test for Enough Ingredients to make a Meal */
+    /* Testing for Negative Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
+    @Test
+    public void addTreats_whenNegativeAmount_throwsFoodStockException () {
+        String negativeAmount = "-10";
+        assertThrows(FoodStockException.class, ()->{
+            fc.addTreats(negativeAmount);
+        });
+
+    }
+
+    /* Valid Number of Kibble */
+    @Test
+    public void addKibble_whenValidAmount_updatesCorrectly() throws Exception{
+        String newAmount = "10";
+        fc.addKibble(newAmount);
+        assertEquals(25, fc.getKibble());
+    }
+
+    /* Invalid Number of Kibble */
+    @Test
+    public void addKibble_whenInvalidAmount_throwsFoodStockException (){
+        String NullAmount = null;
+        assertThrows(FoodStockException.class, ()->{
+            fc.addKibble(NullAmount);
+        });
+
+    }
 
     @Test
-    public void enoughIngredientsTest() throws Exception{
+    public void addKibble_whenNegativeAmount_throwsFoodStockException (){
+        String negativeAmount = "-10";
+        assertThrows(FoodStockException.class, ()->{
+            fc.addKibble(negativeAmount);
+        });
+
+    }
+
+
+    /* Valid Number of Water */
+    @Test
+    public void addWater_whenValidAmount_updatesCorrectly() throws Exception{
+        String newAmount = "10";
+        fc.addTreats(newAmount);
+        assertEquals(25, fc.getTreats());
+    }
+
+
+
+    @Test
+    public void addWater_whenInvalidAmount_throwsFoodStockException (){
+        String NullAmount = null;
+        assertThrows(FoodStockException.class, ()->{
+            fc.addWater(NullAmount);
+        });
+
+    }
+
+
+    @Test
+    public void addWater_whenNegativeAmount_throwsFoodStockException (){
+        String negativeAmount = "-10";
+        assertThrows(FoodStockException.class, ()->{
+            fc.addWater(negativeAmount);
+        });
+
+    }
+
+
+    /* Valid Number of Wet Food */
+    @Test
+    public void addWetFood_whenValidAmount_updatesCorrectly() throws Exception{
+        String newAmount = "10";
+        fc.addWetFood(newAmount);
+        assertEquals(25, fc.getWetFood());
+    }
+
+    @Test
+    public void addWetFood_whenInvalidAmount_throwsFoodStockException () {
+        String NullAmount = null;
+        assertThrows(FoodStockException.class, ()->{
+            fc.addWetFood(NullAmount);
+        });
+
+    }
+
+    @Test
+    public void addWetFood_whenNegativeAmount_throwsFoodStockException () {
+        String negativeAmount = "-10";
+        assertThrows(FoodStockException.class, ()->{
+            fc.addWetFood(negativeAmount);
+        });
+
+    }
+
+    @Test
+    public void enoughIngredients_whenEnough_returnsTrue() throws Exception{
         MealPlan m = new MealPlan();
         //Setting Ingredients count
         m.setAmtKibble("0");
@@ -47,122 +141,64 @@ public class FoodContainerTest {
     }
 
 
-    
-    
-    /* Test for Not Enough Ingredients to make a Meal */
 
+
+    /* Test for Not Enough Ingredients to make a Meal */
     @Test
-    public void notEnoughIngredientsTest() throws Exception{
+    public void enoughIngredients_whenNotEnough_returnsFalse() throws Exception{
         MealPlan m = new MealPlan();
         //Setting Ingredients count
-        m.setAmtKibble("0");
-        m.setAmtTreats("0");
-        m.setAmtWater("0");
-        m.setAmtWetFood("0");
+        m.setAmtKibble("100");
+        m.setAmtTreats("100");
+        m.setAmtWater("100");
+        m.setAmtWetFood("100");
         assertFalse(fc.enoughIngredients(m));
     }
 
-    /* Valid Number of TREATS */
-    @Test
-    public void AddValidTreatsAmount() throws Exception{
-        String newAmount = "10";
-        fc.addTreats(newAmount);
-        assertEquals(25, fc.getTreats());
-    }
 
-    /* Valid Number of Kibble */
+
+
+    /* Test for useIngredients Success*/
     @Test
-    public void AddValidKibbleAmount() throws Exception{
-        String newAmount = "10";
-        fc.addKibble(newAmount);
-        assertEquals(25, fc.getKibble());
+    public void useIngredients_whenEnough_returnsTrue(){
+        MealPlan m = new MealPlan();
+        assertTrue(fc.useIngredients(m));
     }
     
 
-    /* Valid Number of Water */
+    /* Test for useIngredients Failure*/
     @Test
-    public void AddValidWaterAmount() throws Exception{
-        String newAmount = "10";
-        fc.addTreats(newAmount);
-        assertEquals(25, fc.getTreats());
+    public void useIngredients_whenNotEnough_returnsFalse() throws Exception{
+        MealPlan m = new MealPlan();
+        m.setAmtKibble("100");
+        m.setAmtTreats("100");
+        m.setAmtWater("100");
+        m.setAmtWetFood("100");
+        assertFalse(fc.useIngredients(m));
+    }
+
+    /* Test that using ingredients updates stock correctly*/
+    @Test
+    public void useIngredients_whenUsing_updatesStockCorrectly() throws Exception{
+        MealPlan m = new MealPlan();
+        m.setAmtKibble("5");
+        m.setAmtTreats("5");
+        m.setAmtWater("5");
+        m.setAmtWetFood("5");
+
+        fc.useIngredients(m);
+
+        assertEquals(10, fc.getKibble());
+        assertEquals(10, fc.getWater());
+        assertEquals(10, fc.getWetFood());
+        assertEquals(10, fc.getTreats());
     }
     
 
-    /* Valid Number of Wet Food */
-    @Test
-    public void AddValidWetFoodAmount() throws Exception{
-        String newAmount = "10";
-        fc.addWetFood(newAmount);
-        assertEquals(25, fc.getWetFood());
-    }
 
-    /* Testing for Null Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
-    @Test
-    public void AddInvalidTreatsAmount () {
-        String NullAmount = null;
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addTreats(NullAmount);
-        });
 
-    }
-    @Test
-    public void AddInvalidKibbleAmount (){
-        String NullAmount = null;
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addKibble(NullAmount);
-        });
 
-    }
-    @Test
-    public void AddInvalidWaterAmount (){
-        String NullAmount = null;
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addWater(NullAmount);
-        });
 
-    }
-    @Test
-    public void AddInvalidWetFoodAmount () {
-        String NullAmount = null;
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addWetFood(NullAmount);
-        });
-
-    }
-
-    /* Testing for Negative Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
-    @Test
-    public void AddNegetiveTreatsAmount () {
-        String negativeAmount = "-10";
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addTreats(negativeAmount);
-        });
-
-    }
-    @Test
-    public void AddNegativeKibbleAmount (){
-        String negativeAmount = "-10";
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addKibble(negativeAmount);
-        });
-
-    }
-    @Test
-    public void AddNegetiveWaterAmount (){
-        String negativeAmount = "-10";
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addWater(negativeAmount);
-        });
-
-    }
-    @Test
-    public void AddNegetiveWetFoodAmount () {
-        String negativeAmount = "-10";
-        assertThrows(IllegalArgumentException.class, ()->{
-            fc.addWetFood(negativeAmount);
-        });
-
-    }
     
     
 }
