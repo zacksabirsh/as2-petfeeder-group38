@@ -19,7 +19,7 @@ public class FoodContainerTest {
 
     /* Valid Number of TREATS */
     @Test
-    public void addTreats_whenValidAmount_updatesCorrectly() throws Exception{
+    void addTreats_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addTreats(newAmount);
         assertEquals(25, fc.getTreats());
@@ -27,7 +27,7 @@ public class FoodContainerTest {
 
     /* Testing for Null Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
     @Test
-    public void addTreats_whenInvalidAmount_throwsFoodStockException () {
+    void addTreats_whenInvalidAmount_throwsFoodStockException () {
         String NullAmount = null;
         assertThrows(FoodStockException.class, ()->{
             fc.addTreats(NullAmount);
@@ -37,7 +37,7 @@ public class FoodContainerTest {
 
     /* Testing for Negative Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
     @Test
-    public void addTreats_whenNegativeAmount_throwsFoodStockException () {
+    void addTreats_whenNegativeAmount_throwsFoodStockException () {
         String negativeAmount = "-10";
         assertThrows(FoodStockException.class, ()->{
             fc.addTreats(negativeAmount);
@@ -47,7 +47,7 @@ public class FoodContainerTest {
 
     /* Valid Number of Kibble */
     @Test
-    public void addKibble_whenValidAmount_updatesCorrectly() throws Exception{
+    void addKibble_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addKibble(newAmount);
         assertEquals(25, fc.getKibble());
@@ -55,7 +55,7 @@ public class FoodContainerTest {
 
     /* Invalid Number of Kibble */
     @Test
-    public void addKibble_whenInvalidAmount_throwsFoodStockException (){
+    void addKibble_whenInvalidAmount_throwsFoodStockException (){
         String NullAmount = null;
         assertThrows(FoodStockException.class, ()->{
             fc.addKibble(NullAmount);
@@ -64,7 +64,7 @@ public class FoodContainerTest {
     }
 
     @Test
-    public void addKibble_whenNegativeAmount_throwsFoodStockException (){
+    void addKibble_whenNegativeAmount_throwsFoodStockException (){
         String negativeAmount = "-10";
         assertThrows(FoodStockException.class, ()->{
             fc.addKibble(negativeAmount);
@@ -75,7 +75,7 @@ public class FoodContainerTest {
 
     /* Valid Number of Water */
     @Test
-    public void addWater_whenValidAmount_updatesCorrectly() throws Exception{
+    void addWater_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addTreats(newAmount);
         assertEquals(25, fc.getTreats());
@@ -84,7 +84,7 @@ public class FoodContainerTest {
 
 
     @Test
-    public void addWater_whenInvalidAmount_throwsFoodStockException (){
+    void addWater_whenInvalidAmount_throwsFoodStockException (){
         String NullAmount = null;
         assertThrows(FoodStockException.class, ()->{
             fc.addWater(NullAmount);
@@ -94,7 +94,7 @@ public class FoodContainerTest {
 
 
     @Test
-    public void addWater_whenNegativeAmount_throwsFoodStockException (){
+    void addWater_whenNegativeAmount_throwsFoodStockException (){
         String negativeAmount = "-10";
         assertThrows(FoodStockException.class, ()->{
             fc.addWater(negativeAmount);
@@ -105,14 +105,14 @@ public class FoodContainerTest {
 
     /* Valid Number of Wet Food */
     @Test
-    public void addWetFood_whenValidAmount_updatesCorrectly() throws Exception{
+    void addWetFood_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addWetFood(newAmount);
         assertEquals(25, fc.getWetFood());
     }
 
     @Test
-    public void addWetFood_whenInvalidAmount_throwsFoodStockException () {
+    void addWetFood_whenInvalidAmount_throwsFoodStockException () {
         String NullAmount = null;
         assertThrows(FoodStockException.class, ()->{
             fc.addWetFood(NullAmount);
@@ -121,7 +121,7 @@ public class FoodContainerTest {
     }
 
     @Test
-    public void addWetFood_whenNegativeAmount_throwsFoodStockException () {
+    void addWetFood_whenNegativeAmount_throwsFoodStockException () {
         String negativeAmount = "-10";
         assertThrows(FoodStockException.class, ()->{
             fc.addWetFood(negativeAmount);
@@ -130,7 +130,7 @@ public class FoodContainerTest {
     }
 
     @Test
-    public void enoughIngredients_whenEnough_returnsTrue() throws Exception{
+    void enoughIngredients_whenEnough_returnsTrue() throws Exception{
         MealPlan m = new MealPlan();
         //Setting Ingredients count
         m.setAmtKibble("0");
@@ -145,7 +145,7 @@ public class FoodContainerTest {
 
     /* Test for Not Enough Ingredients to make a Meal */
     @Test
-    public void enoughIngredients_whenNotEnough_returnsFalse() throws Exception{
+    void enoughIngredients_whenNotEnough_returnsFalse() throws Exception{
         MealPlan m = new MealPlan();
         //Setting Ingredients count
         m.setAmtKibble("100");
@@ -160,7 +160,7 @@ public class FoodContainerTest {
 
     /* Test for useIngredients Success*/
     @Test
-    public void useIngredients_whenEnough_returnsTrue(){
+    void useIngredients_whenEnough_returnsTrue(){
         MealPlan m = new MealPlan();
         assertTrue(fc.useIngredients(m));
     }
@@ -168,7 +168,7 @@ public class FoodContainerTest {
 
     /* Test for useIngredients Failure*/
     @Test
-    public void useIngredients_whenNotEnough_returnsFalse() throws Exception{
+    void useIngredients_whenNotEnough_returnsFalse() throws Exception{
         MealPlan m = new MealPlan();
         m.setAmtKibble("100");
         m.setAmtTreats("100");
@@ -179,7 +179,7 @@ public class FoodContainerTest {
 
     /* Test that using ingredients updates stock correctly*/
     @Test
-    public void useIngredients_whenUsing_updatesStockCorrectly() throws Exception{
+    void useIngredients_whenUsing_updatesStockCorrectly() throws Exception{
         MealPlan m = new MealPlan();
         m.setAmtKibble("5");
         m.setAmtTreats("5");
