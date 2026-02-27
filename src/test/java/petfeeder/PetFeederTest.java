@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import petfeeder.exceptions.FoodStockException;
+import petfeeder.exceptions.MealPlanException;
 
 /**
  * Unit tests for the PetFeeder class.
@@ -233,12 +234,19 @@ public class PetFeederTest {
     @Test
     void dispenseMeal_whenValidMealPlan_returnsTrue() {
         pf.addMealPlan(m);
-        pf.dispenseMeal(0);
+        assertTrue(pf.dispenseMeal(0));
     }
 
     @Test
     void dispenseMeal_whenInvalidMealPlan_returnsFalse() {
-        pf.dispenseMeal(0);
+        assertFalse(pf.dispenseMeal(0));    }
+
+    @Test
+    void dispenseMeal_whenValidMealPlanExpensive_returnsFalse() throws MealPlanException {
+
+        m.setAmtKibble("10000");
+        pf.addMealPlan(m);
+        assertFalse(pf.dispenseMeal(0));
     }
 
 }

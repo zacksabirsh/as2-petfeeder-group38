@@ -17,10 +17,12 @@ public class FeedingSchedulerTest {
      */
     private static class FakePetFeeder extends PetFeeder {
         boolean called = false;
+        int numTimesCalled = 0;
 
         @Override
         public boolean dispenseMeal(int index) {
             called = true;
+            numTimesCalled ++;
             return true;
         }
     }
@@ -46,10 +48,24 @@ public class FeedingSchedulerTest {
 
         fs.scheduleRecurringFeeding(0, 1);
 
-        Thread.sleep(1500);
+        Thread.sleep(1010);
 
-        assertTrue(pf.called);
+        assertEquals(1, pf.numTimesCalled);
     }
+
+    @Test
+    void scheduleRecurringFeeding_whenOneSecondPeriodRecurring_executesDispenseMeal() throws InterruptedException {
+
+        fs = new FeedingScheduler(pf);
+
+        fs.scheduleRecurringFeeding(0, 1);
+
+        Thread.sleep(10100);
+
+        assertEquals(10, pf.numTimesCalled);
+    }
+
+
 
     @Test
     void scheduleRecurringFeeding_whenNegativePeriod_throwsIllegalArgumentException() throws InterruptedException {
