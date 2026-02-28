@@ -56,6 +56,16 @@ public class FoodContainerTest {
     /* Invalid Number of Kibble */
     @Test
     void addKibble_whenInvalidAmount_throwsFoodStockException (){
+        String invalidAmount = "abc";
+        assertThrows(FoodStockException.class, ()->{
+            fc.addKibble(invalidAmount);
+        });
+
+    }
+
+    /* Null Number of Kibble */
+    @Test
+    void addKibble_whenNullAmount_throwsFoodStockException (){
         String NullAmount = null;
         assertThrows(FoodStockException.class, ()->{
             fc.addKibble(NullAmount);

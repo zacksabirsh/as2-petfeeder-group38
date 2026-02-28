@@ -22,6 +22,8 @@ public class MealPlanTest {
         m = new MealPlan();
     }
 
+
+
     @Test
     void setAmtTreats_whenValid_updatesTreatsAndEnergyCorrectly() throws MealPlanException {
         m.setAmtTreats("10");
@@ -147,6 +149,79 @@ public class MealPlanTest {
             m.setAmtWetFood("-3");
         });
     }
+
+
+    @Test
+    void setName_whenValidName_updatesCorrectly(){
+        m.setName("test");
+        assertEquals("test", m.getName());
+    }
+
+    @Test
+    void setName_whenNull_updatesCorrectly(){
+        m.setName(null);
+        assertEquals("", m.getName());
+    }
+
+    @Test
+    void toString_whenCalled_returnsName(){
+        assertEquals("", m.toString());
+    }
+
+    @Test
+    void hashCode_withName_returnsCorrectHash() {
+        MealPlan plan = new MealPlan();
+        plan.setName("Breakfast");
+
+        int expected = 31 * 1 + "Breakfast".hashCode();
+
+        assertEquals(expected, plan.hashCode());
+    }
+
+    @Test
+    void equals_whenSameObject_returnsTrue() {
+        MealPlan plan = new MealPlan();
+        assertTrue(plan.equals(plan));
+    }
+
+    @Test
+    void equals_whenNull_returnsFalse() {
+        MealPlan plan = new MealPlan();
+        assertFalse(plan.equals(null));
+    }
+
+    @Test
+    void equals_whenDifferentClass_returnsFalse() {
+        MealPlan plan = new MealPlan();
+        assertFalse(plan.equals("Not a MealPlan"));
+    }
+
+    @Test
+    void equals_whenSameName_returnsTrue() {
+        MealPlan p1 = new MealPlan();
+        MealPlan p2 = new MealPlan();
+
+        p1.setName("Dinner");
+        p2.setName("Dinner");
+
+        assertTrue(p1.equals(p2));
+    }
+
+    @Test
+    void equals_whenDifferenteName_returnsFalse() {
+        MealPlan p1 = new MealPlan();
+        MealPlan p2 = new MealPlan();
+
+        p1.setName("Breakfast");
+        p2.setName("Dinner");
+
+        assertFalse(p1.equals(p2));
+    }
+
+
+
+
+
 
 
 

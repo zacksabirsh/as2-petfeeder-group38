@@ -165,6 +165,7 @@ public class PetFeederTest {
 
         pf.replenishFood("100000000000", "100000000000", "0", "100000000000");
 
+
         String expected =
                 "Kibble: 100000000015\n" +
                         "Water: 100000000015\n" +
@@ -247,6 +248,25 @@ public class PetFeederTest {
         m.setAmtKibble("10000");
         pf.addMealPlan(m);
         assertFalse(pf.dispenseMeal(0));
+    }
+
+    @Test
+    void dispenseMeal_whenNotEnoughFoodStock_returnsFalse() throws MealPlanException {
+        MealPlan plan = new MealPlan();
+        plan.setAmtKibble("20");
+
+        pf.addMealPlan(plan);
+
+        assertFalse(pf.dispenseMeal(0));
+    }
+
+    @Test
+    void getters_areCovered() throws MealPlanException {
+        MealPlan plan = new MealPlan();
+        plan.setAmtKibble("20");
+        assertEquals(500, pf.getEnergyLimit());
+        assertEquals(500, pf.getRemainingEnergyBudget());
+        assertNotNull(pf.getMealPlans());
     }
 
 }
