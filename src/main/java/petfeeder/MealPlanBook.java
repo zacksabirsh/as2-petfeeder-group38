@@ -42,8 +42,12 @@ public class MealPlanBook {
         //Assume meal plan cannot be added until find an empty
         //spot
         boolean added = false;
+
         //Check for first empty spot in array
         if (!exists) {
+            //MUTANT ###################################################
+            //replace && with ||
+            //for (int i = 0; i < mealPlanArray.length || !added; i++) {
             for (int i = 0; i < mealPlanArray.length && !added; i++) {
                 if (mealPlanArray[i] == null) {
                     mealPlanArray[i] = m;
