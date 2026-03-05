@@ -243,7 +243,7 @@ public class PetFeederTest {
         assertFalse(pf.dispenseMeal(0));    }
 
     @Test
-    void dispenseMeal_whenValidMealPlanExpensive_returnsFalse() throws MealPlanException {
+    void dispenseMeal_whenEnergyExceedsRemainingBudget__returnsFalse() throws MealPlanException {
 
         m.setAmtKibble("10000");
         pf.addMealPlan(m);
@@ -251,9 +251,10 @@ public class PetFeederTest {
     }
 
     @Test
-    void dispenseMeal_whenNotEnoughFoodStock_returnsFalse() throws MealPlanException {
+    void dispenseMeal_whenEnergySufficientFoodStockNot_returnsFalse() throws MealPlanException, FoodStockException {
         MealPlan plan = new MealPlan();
         plan.setAmtKibble("20");
+        pf.replenishFood("02","20", "0","100");
 
         pf.addMealPlan(plan);
 

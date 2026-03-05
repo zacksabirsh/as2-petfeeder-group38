@@ -49,9 +49,10 @@ public class MealPlanBook {
 
         //Check for first empty spot in array
         if (!exists) {
-            // ################### VALID-BUT-NOT-USEFUL TEST ###################
-            // Original: for (int i = 0; i < mealPlanArray.length && !added; i++) 
-            for (int i = 0; i < mealPlanArray.length || !added; i++) {
+            //MUTANT ###################################################
+            //replace && with ||
+            //for (int i = 0; i < mealPlanArray.length || !added; i++) {
+            for (int i = 0; i < mealPlanArray.length && !added; i++) {
                 if (mealPlanArray[i] == null) {
                     mealPlanArray[i] = m;
                     added = true;

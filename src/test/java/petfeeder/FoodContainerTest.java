@@ -17,7 +17,7 @@ public class FoodContainerTest {
         fc = new FoodContainer();
     }
 
-    /* Valid Number of TREATS */
+    /* Treats */
     @Test
     void addTreats_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
@@ -25,7 +25,13 @@ public class FoodContainerTest {
         assertEquals(25, fc.getTreats());
     }
 
-    /* Testing for Null Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
+    @Test
+    void addTreats_whenZero_updatesCorrectly() throws Exception{
+        String newAmount = "0";
+        fc.addTreats(newAmount);
+        assertEquals(15, fc.getTreats());
+    }
+
     @Test
     void addTreats_whenInvalidAmount_throwsFoodStockException () {
         String NullAmount = null;
@@ -35,7 +41,6 @@ public class FoodContainerTest {
 
     }
 
-    /* Testing for Negative Value Exception for TREATS , KIBBLES, WATER & WET FOOD*/
     @Test
     void addTreats_whenNegativeAmount_throwsFoodStockException () {
         String negativeAmount = "-10";
@@ -45,7 +50,7 @@ public class FoodContainerTest {
 
     }
 
-    /* Valid Number of Kibble */
+    /* Kibble */
     @Test
     void addKibble_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
@@ -53,7 +58,12 @@ public class FoodContainerTest {
         assertEquals(25, fc.getKibble());
     }
 
-    /* Invalid Number of Kibble */
+    @Test
+    void addKibble_whenZero_updatesCorrectly() throws FoodStockException {
+        fc.addKibble("0");
+        assertEquals(15, fc.getKibble());
+    }
+
     @Test
     void addKibble_whenInvalidAmount_throwsFoodStockException (){
         String invalidAmount = "abc";
@@ -63,7 +73,6 @@ public class FoodContainerTest {
 
     }
 
-    /* Null Number of Kibble */
     @Test
     void addKibble_whenNullAmount_throwsFoodStockException (){
         String NullAmount = null;
@@ -83,12 +92,18 @@ public class FoodContainerTest {
     }
 
 
-    /* Valid Number of Water */
+    /* Water */
     @Test
     void addWater_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addTreats(newAmount);
         assertEquals(25, fc.getTreats());
+    }
+
+    @Test
+    void addWater_whenZero_updatesCorrectly() throws FoodStockException {
+        fc.addWater("0");
+        assertEquals(15, fc.getWater());
     }
 
 
@@ -113,12 +128,18 @@ public class FoodContainerTest {
     }
 
 
-    /* Valid Number of Wet Food */
+    /* Wet Food */
     @Test
     void addWetFood_whenValidAmount_updatesCorrectly() throws Exception{
         String newAmount = "10";
         fc.addWetFood(newAmount);
         assertEquals(25, fc.getWetFood());
+    }
+
+    @Test
+    void addWetFood_whenZero_updatesCorrectly() throws FoodStockException {
+        fc.addWetFood("0");
+        assertEquals(15, fc.getWetFood());
     }
 
     @Test

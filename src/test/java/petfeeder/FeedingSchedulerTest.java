@@ -107,7 +107,7 @@ public class FeedingSchedulerTest {
         assertTrue(fs.hasActiveSchedule());
     }
 
-
+    
 
     @Test
     void stop_whenCalled_cancelsSchedule() throws InterruptedException {
