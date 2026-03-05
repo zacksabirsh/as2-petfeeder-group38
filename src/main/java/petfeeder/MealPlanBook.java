@@ -35,13 +35,13 @@ public class MealPlanBook {
         boolean exists = false;
         //Check that meal plan doesn't already exist in array
         
-        // ################### VALID ###################
-        //Original: for (int i = 0; i < mealPlanArray.length; i++ ) {
-
-        for (int i = 0; i <=  mealPlanArray.length; i++ ) {
+        for (int i = 0; i <  mealPlanArray.length; i++ ) {
             if (m.equals(mealPlanArray[i])) {
-                exists = true;
+                // ################### VALID-BUT-NOT-USEFUL TEST ###################
+                //exists = true;
+                // Deleted
             }
+        
         }
         //Assume meal plan cannot be added until find an empty
         //spot

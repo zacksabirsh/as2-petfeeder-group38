@@ -53,7 +53,7 @@ public class FoodContainer {
         int amtTreats = 0;
         try {
 
-
+            // ################### VALID-BUT-NOT-USEFUL TEST ###################
             //Original: amtTreats = Integer.parseInt(treats);
             amtTreats = 0;
 
@@ -142,7 +142,8 @@ public class FoodContainer {
             throw new FoodStockException("Units of water must be a positive integer");
         }
         if (amtWater >= 0) {
-            FoodContainer.water += amtWater;
+            // Original: FoodContainer.water += amtWater;
+            FoodContainer.water *= amtWater;
         } else {
             throw new FoodStockException("Units of water must be a positive integer");
         }
