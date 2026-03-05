@@ -98,7 +98,10 @@ public class PetFeeder {
             // Require enough remaining total energy budget.
             if (mealEnergy <= remainingEnergyBudget) {
                 if (foodContainer.useIngredients(selected)) {
-                    energyConsumedSoFar += mealEnergy;
+
+                    // ################### USEFUL TEST ###################
+                    // Original: energyConsumedSoFar += mealEnergy;
+                    energyConsumedSoFar *= mealEnergy;
                     dispensed = true;
                 } else {
                     dispensed = false;

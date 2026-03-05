@@ -52,7 +52,12 @@ public class FoodContainer {
     public synchronized void addTreats(String treats) throws FoodStockException {
         int amtTreats = 0;
         try {
-            amtTreats = Integer.parseInt(treats);
+
+
+            //Original: amtTreats = Integer.parseInt(treats);
+            amtTreats = 0;
+
+
         } catch (NumberFormatException e) {
             throw new FoodStockException("Units of treats must be a positive integer");
         }
@@ -191,16 +196,28 @@ public class FoodContainer {
      */
     protected synchronized boolean enoughIngredients(MealPlan m) {
         boolean isEnough = true;
-        if(FoodContainer.kibble < m.getAmtKibble()) {
+
+        // ##################### USEFUL  Mutant #####################
+        //Before:   if(FoodContainer.kibble < m.getAmtKibble()) 
+        if(FoodContainer.kibble <= m.getAmtKibble()) {
             isEnough = false;
         }
-        if(FoodContainer.water < m.getAmtWater()) {
+
+        // ##################### USEFUL  Mutant #####################
+        //Before: if(FoodContainer.water < m.getAmtWater()) 
+        if(FoodContainer.water <= m.getAmtWater()) {
             isEnough = false;
         }
-        if(FoodContainer.wetFood < m.getAmtWetFood()) {
+
+        // ##################### USEFUL  Mutant #####################
+        //Before: if(FoodContainer.wetFood < m.getAmtWetFood()) 
+        if(FoodContainer.wetFood <= m.getAmtWetFood()) {
             isEnough = false;
         }
-        if(FoodContainer.treats < m.getAmtTreats()) {
+
+        // ##################### USEFUL  Mutant #####################
+        //Before: if(FoodContainer.treats < m.getAmtTreats()) 
+        if(FoodContainer.treats <= m.getAmtTreats()) {
             isEnough = false;
         }
         return isEnough;

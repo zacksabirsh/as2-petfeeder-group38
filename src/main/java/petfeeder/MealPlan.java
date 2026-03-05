@@ -88,7 +88,10 @@ public class MealPlan {
         } catch (NumberFormatException e) {
             throw new MealPlanException("Units of kibble must be a positive integer");
         }
-        if (amtKibble >= 0) {
+
+        // ################### EQUIVALENT TEST ###################
+        // Original: if (amtKibble >= 0) 
+        if (!(amtKibble <= -1)) {
             this.amtKibble = amtKibble;
             updateEnergyCost();
         } else {

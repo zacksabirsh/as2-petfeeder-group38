@@ -34,7 +34,11 @@ public class MealPlanBook {
         //find out otherwise
         boolean exists = false;
         //Check that meal plan doesn't already exist in array
-        for (int i = 0; i < mealPlanArray.length; i++ ) {
+        
+        // ################### VALID ###################
+        //Original: for (int i = 0; i < mealPlanArray.length; i++ ) {
+
+        for (int i = 0; i <=  mealPlanArray.length; i++ ) {
             if (m.equals(mealPlanArray[i])) {
                 exists = true;
             }
