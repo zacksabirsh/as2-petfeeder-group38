@@ -68,7 +68,9 @@ public class FeedingScheduler {
      * Returns true if there is an active schedule.
      * @return boolean
      */
-    public synchronized boolean hasActiveSchedule() {
+    // ################### Invalid TEST ###################
+    // Original: public synchronized boolean hasActiveSchedule() 
+    public synchronized hasActiveSchedule() {
         return currentTask != null && !currentTask.isCancelled();
     }
 
