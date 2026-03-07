@@ -54,8 +54,11 @@ public class FoodContainer {
         try {
 
             // ################### VALID-BUT-NOT-USEFUL TEST ###################
-            //Original: amtTreats = Integer.parseInt(treats);
-            amtTreats = 0;
+            //Original:
+            amtTreats = Integer.parseInt(treats);
+
+            //Mutant:
+            //amtTreats = 0;
 
 
         } catch (NumberFormatException e) {

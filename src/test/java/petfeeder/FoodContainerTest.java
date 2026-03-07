@@ -186,6 +186,14 @@ public class FoodContainerTest {
         assertFalse(fc.enoughIngredients(m));
     }
 
+    @Test
+    void enoughIngredients_whenExactlyEnough_returnsTrue() throws Exception{
+        MealPlan m = new MealPlan();
+        //Setting Ingredients count
+        m.setAmtTreats("15");
+        assertTrue(fc.enoughIngredients(m));
+    }
+
 
 
 

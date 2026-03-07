@@ -262,6 +262,25 @@ public class PetFeederTest {
     }
 
     @Test
+    void dispenseMeal_whenDispensed_updatesRemainingEnergyBudgetCorrectly() throws MealPlanException {
+
+        MealPlan m = new MealPlan();
+        m.setAmtTreats("10");
+        pf.addMealPlan(m);
+
+        int before = pf.getRemainingEnergyBudget();
+
+        boolean result = pf.dispenseMeal(0);
+
+        int after = pf.getRemainingEnergyBudget();
+
+        assertTrue(result);
+        assertEquals(before - 200, after);
+
+    }
+
+
+    @Test
     void getters_areCovered() throws MealPlanException {
         MealPlan plan = new MealPlan();
         plan.setAmtKibble("20");
